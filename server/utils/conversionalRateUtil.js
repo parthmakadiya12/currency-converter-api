@@ -2,7 +2,7 @@ import axios from "axios";
 import parser from "xml2json";
 
 function getConversionRates() {
-  ////https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
+  //https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
   return axios
     .get("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml")
     .then((res) => {
@@ -11,13 +11,13 @@ function getConversionRates() {
       return formatData(conversionObj);
     })
     .catch((err) => {
-      console.log("ERR", err);
       return { error: "Couldn't fetch data" };
     });
 }
 
 function formatData(obj) {
   const result = {};
+  result.EUR = 1;
   for (let i = 0; i < obj.length; i++) {
     const currency = obj[i].currency;
     const rate = obj[i].rate;
