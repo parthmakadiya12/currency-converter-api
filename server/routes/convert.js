@@ -1,9 +1,13 @@
 import express from "express";
-var router = express.Router();
+import getConversionRates from "../utils/conversionalRateUtil";
+
+const router = express.Router();
 
 /* GET convert get listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
+router.get("/", async (req, res, next) => {
+  const result = await getConversionRates();
+  console.log("RESULT", result);
+  res.json(result);
 });
 
 export default router;
