@@ -24,12 +24,14 @@ router.get("/", /*#__PURE__*/function () {
       to,
       amount
     } = req.query;
-    var rates = calculate(from, to, amount, req.currentRates);
-    res.json({
+    var totalSum = calculate(from, to, amount, req.currentRates);
+    var rate = calculate(from, to, 1, req.currentRates);
+    res.status(200).send({
       amount: amount,
       from: from,
       to: to,
-      rate: rates,
+      total: totalSum,
+      rate: rate,
       date: new Date()
     });
   });
@@ -45,7 +47,7 @@ function calculate(from, to, amt, currentRates) {
   if (from === "EUR") {
     result = amt * currentRates[to];
   } else if (to === "EUR") {
-    result = amt / currentRates[to];
+    result = amt / currentRates[from];
   } else {
     result = amt * (currentRates[to] / currentRates[from]);
   }

@@ -4,17 +4,19 @@
     <style>
       body {
         display: flex;
-        flex-direction: column;
       }
     </style>
   </head>
   <body>
     <h1>Currency Exchange API</h1>
-    <p>This Currency Exchange API.</p>
+    <p>
+      This Currency Exchange API is REST-ful and supports CORS, so it can also
+      be used in web browsers.
+    </p>
 
     <h1>Routes</h1>
     <h2>GET / (text/html)</h2>
-    <p>Returns API doc for currency converter</p>
+    <p>Returns an HTML document with API routes and usage.</p>
 
     <h2>GET /convert (application/json)</h2>
     <p>
@@ -40,17 +42,15 @@
         amount (string): The converted amount as a string, with 4 decimal
         places.
       </li>
-      <li>from (string): From which currency you want to convert</li>
       <li>
-        total (number): After calculating the values how much amount you will
-        get
+        currency (string): 3-letter ISO-4217 code for the target currency used
+        for the conversion.
       </li>
-      <li>rate (number): The rate of given currency for 1 .</li>
-      <li>date (date): Current date time.</li>
+      <li>
+        rate (string): The effective conversion rate applied, with 8 decimal
+        places
+      </li>
+      <li>date (string): The date of the rates returned from the ECB.</li>
     </ul>
-    <h2>Example</h2>
-    <a href="http://localhost:8000/convert?from=INR&to=EUR&amount=50000"
-      >http://localhost:8000/convert?from=INR&to=EUR&amount=50000</a
-    >
   </body>
 </html>

@@ -10,7 +10,7 @@ jest.mock("../../utils/conversionalRateUtil.js", () =>
   })
 );
 
-var supertest = require("supertest");
+const supertest = require("supertest");
 const request = supertest(app);
 
 describe("Convert API", () => {
@@ -31,7 +31,7 @@ describe("Convert API", () => {
     expect(res.status).toBe(200);
     expect(res.body.amount).toEqual("74");
     expect(res.body.from).toEqual("INR");
-    expect(res.body.rate).toEqual(0.9922727272727272);
+    expect(res.body.total).toEqual(0.9922727272727272);
   });
 
   it("should return correct value for EUR and INR", async () => {
@@ -39,6 +39,14 @@ describe("Convert API", () => {
     expect(res.status).toBe(200);
     expect(res.body.amount).toEqual("74");
     expect(res.body.from).toEqual("EUR");
-    expect(res.body.rate).toEqual(6512);
+    expect(res.body.total).toEqual(6512);
+  });
+
+  it("should return correct value for INR and EUR", async () => {
+    const res = await request.get("/convert?from=INR&to=EUR&amount=88.11");
+    expect(res.status).toBe(200);
+    expect(res.body.amount).toEqual("88.11");
+    expect(res.body.from).toEqual("INR");
+    expect(res.body.total).toEqual(1.00125);
   });
 });

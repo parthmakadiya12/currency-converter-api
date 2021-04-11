@@ -13,11 +13,11 @@ var _cookieParser = _interopRequireDefault(require("cookie-parser"));
 
 var _morgan = _interopRequireDefault(require("morgan"));
 
-var _index = _interopRequireDefault(require("./routes/index"));
-
 var _convert = _interopRequireDefault(require("./routes/convert"));
 
 var _convertionReqValidator = _interopRequireDefault(require("./middlewares/convertionReqValidator"));
+
+var _corsMiddleware = _interopRequireDefault(require("./middlewares/corsMiddleware"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28,8 +28,8 @@ app.use(_express.default.urlencoded({
   extended: false
 }));
 app.use((0, _cookieParser.default)());
+app.use(_corsMiddleware.default);
 app.use(_express.default.static(_path.default.join(__dirname, "../public")));
-app.use("/", _index.default);
 app.use("/convert", _convertionReqValidator.default, _convert.default);
 app.use((error, req, res, next) => {
   return res.status(500).json({
