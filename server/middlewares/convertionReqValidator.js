@@ -1,4 +1,4 @@
-import getConversionRates from "../utils/conversionalRateUtil";
+import getConversionRates from "../provider/conversionalRateProvider";
 
 const conversionReqValidator = async (req, res, next) => {
   const from = req.query.from;

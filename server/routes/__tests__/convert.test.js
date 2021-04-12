@@ -1,6 +1,6 @@
 import app from "../../app";
 
-jest.mock("../../utils/conversionalRateUtil.js", () =>
+jest.mock("../../provider/conversionalRateProvider.js", () =>
   jest.fn(() => {
     return {
       EUR: 1,

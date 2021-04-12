@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _conversionalRateUtil = _interopRequireDefault(require("../utils/conversionalRateUtil"));
+var _conversionalRateProvider = _interopRequireDefault(require("../provider/conversionalRateProvider"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18,7 +18,7 @@ var conversionReqValidator = /*#__PURE__*/function () {
     var from = req.query.from;
     var to = req.query.to;
     var amount = req.query.amount;
-    var result = yield (0, _conversionalRateUtil.default)();
+    var result = yield (0, _conversionalRateProvider.default)();
     var keys = Object.keys(result);
     req.currentRates = result;
 
